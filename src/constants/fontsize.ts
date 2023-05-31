@@ -1,4 +1,4 @@
-const spacing = {
+const fontSize = {
   x1: '2px',
   x2: '4px',
   x3: '6px',
@@ -12,4 +12,4 @@ const spacing = {
   x11: '22px',
 } as const;
 
-export default spacing;
+export default fontSize;
