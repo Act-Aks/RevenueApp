@@ -12,4 +12,7 @@ const lightTheme = {
   BACKGROUND_COLOR: '#fff',
   BUTTON_COLOR: '#000',
 };
-export { lightTheme, darkTheme };
+const COLOR_THEMES = {
+  backgroundColor: '#3f3f3f',
+};
+export { lightTheme, darkTheme, COLOR_THEMES };

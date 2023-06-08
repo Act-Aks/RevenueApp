@@ -2,23 +2,28 @@ import React, { useState } from 'react';
 import {
   AvatarContainer,
   AvatarImage,
+  ButtonContainer,
   ButtonLabel,
+  ExtraInfo,
+  Footer,
   Input,
   InputContainer,
   LeftInputIcon,
+  Link,
   LoginButton,
   Separator,
   StyledContainer,
   StyledLoginBox,
   StyledTextInput,
 } from './style';
-import { View, Text, Alert } from 'react-native';
+import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { spacing } from '../../../constants';
 import {
   FIREBASE_AUTH,
   signInWithEmailAndPassword,
 } from '../../../../firebase/config';
 import { Navigation } from '../../../navigation/type';
+import { NavigationScreens } from '../../../navigation';
 
 interface LoginScreenProps {
   navigation: Navigation;
@@ -34,7 +39,11 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
   const handleOnChangePassword = (text: string) => setPassword(text);
 
   const onFooterLinkPress = () => {
-    navigation.navigate('Registration');
+    navigation.navigate(NavigationScreens.Registration);
+  };
+
+  const dismisssKeyboard = () => {
+    Keyboard.dismiss();
   };
 
   const handleLogin = async () => {
@@ -51,70 +60,56 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
   };
 
   return (
-    <StyledContainer>
-      <StyledLoginBox>
-        <AvatarContainer>
-          <AvatarImage source={require('../../../../assets/camera.png')} />
-        </AvatarContainer>
-        <InputContainer>
-          <Input>
-            <LeftInputIcon source={require('../../../../assets/user.png')} />
-            <StyledTextInput
-              placeholder={'E-mail'}
-              textContentType={'emailAddress'}
-              keyboardType={'default'}
-              autoCapitalize={'none'}
-              onChangeText={handleOnChangeUserName}
-              value={email}
-            />
-          </Input>
-          <Separator space={spacing.x6} />
-          <Input>
-            <LeftInputIcon
-              source={require('../../../../assets/password.png')}
-            />
-            <StyledTextInput
-              placeholder={'Password'}
-              textContentType={'password'}
-              autoCapitalize={'none'}
-              multiline={false}
-              secureTextEntry={true}
-              autoCorrect={false}
-              maxLength={10}
-              onChangeText={handleOnChangePassword}
-              value={password}
-            />
-          </Input>
-        </InputContainer>
-        <LoginButton onPress={handleLogin}>
-          <ButtonLabel>{'LOGIN'}</ButtonLabel>
-        </LoginButton>
-      </StyledLoginBox>
-      <View
-        style={{
-          alignItems: 'center',
-          marginTop: 20,
-          position: 'relative',
-          backgroundColor: 'grey',
-        }}>
-        <Text
-          style={{
-            fontSize: 16,
-            color: '#2e2e2d',
-          }}>
-          Don't have an account?{' '}
-          <Text
-            onPress={onFooterLinkPress}
-            style={{
-              color: '#788eec',
-              fontWeight: 'bold',
-              fontSize: 16,
-            }}>
-            Sign up
-          </Text>
-        </Text>
-      </View>
-    </StyledContainer>
+    <TouchableWithoutFeedback onPress={dismisssKeyboard}>
+      <StyledContainer loading={loading}>
+        <StyledLoginBox>
+          <AvatarContainer>
+            <AvatarImage source={require('../../../../assets/camera.png')} />
+          </AvatarContainer>
+          <InputContainer>
+            <Input>
+              <LeftInputIcon source={require('../../../../assets/user.png')} />
+              <StyledTextInput
+                placeholder={'E-mail'}
+                textContentType={'emailAddress'}
+                keyboardType={'default'}
+                autoCapitalize={'none'}
+                onChangeText={handleOnChangeUserName}
+                value={email}
+              />
+            </Input>
+            <Separator space={spacing.x6} />
+            <Input>
+              <LeftInputIcon
+                source={require('../../../../assets/password.png')}
+              />
+              <StyledTextInput
+                placeholder={'Password'}
+                textContentType={'password'}
+                autoCapitalize={'none'}
+                multiline={false}
+                secureTextEntry={true}
+                autoCorrect={false}
+                maxLength={10}
+                onChangeText={handleOnChangePassword}
+                value={password}
+              />
+            </Input>
+          </InputContainer>
+          <ButtonContainer>
+            <LoginButton onPress={handleLogin}>
+              <ButtonLabel>{'LOGIN'}</ButtonLabel>
+            </LoginButton>
+          </ButtonContainer>
+        </StyledLoginBox>
+        <Footer>
+          <ExtraInfo>
+            {"Don't have an account? "}
+            <Link onPress={onFooterLinkPress}>{'Sign up'}</Link>
+          </ExtraInfo>
+        </Footer>
+      </StyledContainer>
+    </TouchableWithoutFeedback>
   );
 };
 

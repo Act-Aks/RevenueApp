@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ThemeProvider } from 'styled-components/native';
-import { ActivityIndicator, useColorScheme } from 'react-native';
+import { useColorScheme } from 'react-native';
 import { darkTheme, lightTheme } from './constants/theme';
 import { AuthStack, ProtectedStack } from './navigation';
 import { User } from 'firebase/auth';
@@ -20,16 +18,15 @@ function RevenueApp() {
     if (!loading) {
       SplashScreen.hide();
     } else {
-      SplashScreen.show();
-      onAuthStateChanged(auth, user => {
-        setUser(user);
+      onAuthStateChanged(auth, authUser => {
+        setUser(authUser);
         setLoading(false);
       });
     }
     return () => {
       setLoading(false);
     };
-  }, [loading]);
+  }, [loading, auth]);
 
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>

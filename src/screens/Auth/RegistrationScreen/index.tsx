@@ -1,34 +1,53 @@
 import React, { useState } from 'react';
-import {
-  Alert,
-  Image,
-  KeyboardAvoidingView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import styles from './styles';
+import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import {
   FIREBASE_AUTH,
   createUserWithEmailAndPassword,
 } from '../../../../firebase/config';
 import { Navigation } from '../../../navigation/type';
+import {
+  ButtonContainer,
+  ButtonLabel,
+  ExtraInfo,
+  Footer,
+  IconContainer,
+  IconImage,
+  Input,
+  InputContainer,
+  LeftInputIcon,
+  Link,
+  RegisterButton,
+  Separator,
+  StyledContainer,
+  StyledKeyboardAvoidingView,
+  StyledRegisterBox,
+  StyledTextInput,
+} from './style';
+import { spacing } from '../../../constants';
+import { NavigationScreens } from '../../../navigation';
 
 interface RegistrationScreenProps {
   navigation: Navigation;
 }
 
 const RegistrationScreen = ({ navigation }: RegistrationScreenProps) => {
-  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const auth = FIREBASE_AUTH;
 
+  const handleOnChangeEmail = (text: string) => setEmail(text);
+  const handleOnChangePassword = (text: string) => setPassword(text);
+  const handleOnChangeConfirmPassword = (text: string) =>
+    setConfirmPassword(text);
+
   const onFooterLinkPress = () => {
-    navigation.navigate('Login');
+    navigation.navigate(NavigationScreens.Login);
+  };
+
+  const dismisssKeyboard = () => {
+    Keyboard.dismiss();
   };
 
   const signUp = async () => {
@@ -44,7 +63,7 @@ const RegistrationScreen = ({ navigation }: RegistrationScreenProps) => {
     }
   };
 
-  const onRegisterPress = async () => {
+  const onPressCreateAccount = async () => {
     if (password !== confirmPassword) {
       Alert.alert("Passwords don't match.");
       return;
@@ -53,65 +72,80 @@ const RegistrationScreen = ({ navigation }: RegistrationScreenProps) => {
   };
 
   return (
-    <View style={styles.container}>
-      <KeyboardAvoidingView style={{ flex: 1, width: '100%' }}>
-        <Image
-          style={styles.logo}
-          source={require('../../../../assets/camera.png')}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Full Name"
-          placeholderTextColor="#aaaaaa"
-          onChangeText={text => setFullName(text)}
-          value={fullName}
-          underlineColorAndroid="transparent"
-          autoCapitalize="none"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="E-mail"
-          placeholderTextColor="#aaaaaa"
-          onChangeText={text => setEmail(text)}
-          value={email}
-          underlineColorAndroid="transparent"
-          autoCapitalize="none"
-        />
-        <TextInput
-          style={styles.input}
-          placeholderTextColor="#aaaaaa"
-          secureTextEntry
-          placeholder="Password"
-          onChangeText={text => setPassword(text)}
-          value={password}
-          underlineColorAndroid="transparent"
-          autoCapitalize="none"
-        />
-        <TextInput
-          style={styles.input}
-          placeholderTextColor="#aaaaaa"
-          secureTextEntry
-          placeholder="Confirm Password"
-          onChangeText={text => setConfirmPassword(text)}
-          value={confirmPassword}
-          underlineColorAndroid="transparent"
-          autoCapitalize="none"
-        />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => onRegisterPress()}>
-          <Text style={styles.buttonTitle}>Create account</Text>
-        </TouchableOpacity>
-        <View style={styles.footerView}>
-          <Text style={styles.footerText}>
-            Already got an account?{' '}
-            <Text onPress={onFooterLinkPress} style={styles.footerLink}>
-              Log in
-            </Text>
-          </Text>
-        </View>
-      </KeyboardAvoidingView>
-    </View>
+    <TouchableWithoutFeedback onPress={dismisssKeyboard}>
+      <StyledContainer loading={loading}>
+        <StyledRegisterBox>
+          <StyledKeyboardAvoidingView>
+            <IconContainer>
+              <IconImage source={require('../../../../assets/appIcon.png')} />
+            </IconContainer>
+            <InputContainer>
+              <Input>
+                <LeftInputIcon
+                  source={require('../../../../assets/user.png')}
+                />
+                <StyledTextInput
+                  placeholder={'E-mail'}
+                  textContentType={'emailAddress'}
+                  keyboardType={'default'}
+                  autoCapitalize={'none'}
+                  underlineColorAndroid={'transparent'}
+                  onChangeText={handleOnChangeEmail}
+                  value={email}
+                />
+              </Input>
+              <Separator space={spacing.x6} />
+              <Input>
+                <LeftInputIcon
+                  source={require('../../../../assets/password.png')}
+                />
+                <StyledTextInput
+                  placeholder={'Password'}
+                  textContentType={'password'}
+                  autoCapitalize={'none'}
+                  underlineColorAndroid={'transparent'}
+                  multiline={false}
+                  autoCorrect={false}
+                  maxLength={10}
+                  onChangeText={handleOnChangePassword}
+                  value={password}
+                  secureTextEntry
+                />
+              </Input>
+              <Separator space={spacing.x6} />
+              <Input>
+                <LeftInputIcon
+                  source={require('../../../../assets/password.png')}
+                />
+                <StyledTextInput
+                  placeholder={'Confirm Password'}
+                  textContentType={'password'}
+                  autoCapitalize={'none'}
+                  underlineColorAndroid={'transparent'}
+                  multiline={false}
+                  autoCorrect={false}
+                  maxLength={10}
+                  onChangeText={handleOnChangeConfirmPassword}
+                  value={confirmPassword}
+                  secureTextEntry
+                />
+              </Input>
+            </InputContainer>
+            <ButtonContainer>
+              <RegisterButton onPress={onPressCreateAccount}>
+                <ButtonLabel>{'Create account'}</ButtonLabel>
+              </RegisterButton>
+            </ButtonContainer>
+            <Footer>
+              <ExtraInfo>
+                {'Already got an account? '}
+                <Link onPress={onFooterLinkPress}>{'Log in'}</Link>
+              </ExtraInfo>
+            </Footer>
+          </StyledKeyboardAvoidingView>
+        </StyledRegisterBox>
+      </StyledContainer>
+    </TouchableWithoutFeedback>
   );
 };
 
