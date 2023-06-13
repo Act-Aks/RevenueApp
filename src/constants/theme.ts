@@ -13,6 +13,7 @@ const lightTheme = {
   BUTTON_COLOR: '#000',
 };
 const COLOR_THEMES = {
-  backgroundColor: '#3f3f3f',
-};
+  Dark: '#3f3f3f',
+  Light: '#fff',
+} as const;
 export { lightTheme, darkTheme, COLOR_THEMES };

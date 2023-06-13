@@ -7,12 +7,12 @@ export const StyledContainer = styled(LinearGradient).attrs({
   colors: ['#072d70', '#629ce3', '#133f75'],
   start: { x: 0.2, y: 0 },
   end: { x: 1, y: 1 },
-})<{ loading?: boolean }>`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  opacity: ${props => (props.loading ? 0.5 : 1)};
-`;
+})<{ loading?: boolean }>(props => ({
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+  opacity: props.loading ? 0.5 : 1,
+}));
 export const StyledRegisterBox = styled(LinearGradient).attrs({
   colors: ['#06a0b8', '#f1c40f', '#06a0b8'],
   start: { x: 0, y: 0.5 },
@@ -88,9 +88,9 @@ export const ButtonLabel = styled.Text({
   color: '#4C64FF',
   alignSelf: 'center',
 });
-export const Separator = styled.View<{ space: Spacing }>`
-  margin-bottom: ${props => props.space ?? spacing.x1};
-`;
+export const Separator = styled.View<{ space: Spacing }>(props => ({
+  marginBottom: props.space ?? spacing.x1,
+}));
 export const Footer = styled.View({
   marginTop: 12,
   alignItems: 'center',

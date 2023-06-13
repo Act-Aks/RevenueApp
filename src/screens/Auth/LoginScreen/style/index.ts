@@ -7,13 +7,13 @@ export const StyledContainer = styled(LinearGradient).attrs({
   colors: ['#072d70', '#629ce3', '#133f75'],
   start: { x: 0.2, y: 0 },
   end: { x: 1, y: 1 },
-})<{ loading?: boolean }>`
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  opacity: ${props => (props.loading ? 0.5 : 1)};
-`;
+})<{ loading?: boolean }>(props => ({
+  display: 'flex',
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+  opacity: props.loading ? 0.5 : 1,
+}));
 export const StyledLoginBox = styled(LinearGradient).attrs({
   colors: ['#06a0b8', '#f1c40f', '#06a0b8'],
   start: { x: 0, y: 0.5 },
@@ -84,9 +84,9 @@ export const ButtonLabel = styled.Text`
   font-size: ${fontSize.x7};
   font-weight: 700;
 `;
-export const Separator = styled.View<{ space: Spacing }>`
-  margin-bottom: ${props => props.space ?? spacing.x1};
-`;
+export const Separator = styled.View<{ space: Spacing }>(props => ({
+  marginBottom: props.space ?? spacing.x1,
+}));
 export const Footer = styled.View({
   marginTop: `${spacing.x6}`,
   alignItems: 'center',
