@@ -1,27 +1,24 @@
-import ExpenseItem from './ExpenseItem';
-import Card from '../Card';
-import ExpensesFilter from './ExpenseFilter';
-import { Text, View } from 'react-native';
 import React from 'react';
+import { Text, View } from 'react-native';
+import Card from '../Card';
 
-interface ExpensesProps {
-  items: Array<any>;
+interface ExpenseProps {
+  items: Array<{
+    id: string;
+    title: string;
+    amount: number;
+    date: Date;
+  }>;
 }
 
-const Expenses: React.FC<ExpensesProps> = ({ items }) => {
+const Expenses: React.FC<ExpenseProps> = ({ items }) => {
   return (
     <Card>
-      {/* {items.map(expense => (
-        <ExpenseItem
-          key={expense.date}
-          title={expense.title}
-          amount={expense.amount}
-          date={expense.date}
-        />
-      ))} */}
-      <View style={{ height: 100, width: '100%', backgroundColor: 'red' }}>
-        <Text>{'sdjfkhdjhgjghj'}</Text>
-      </View>
+      {items.map(expense => (
+        <View>
+          <Text>{expense.title}</Text>
+        </View>
+      ))}
     </Card>
   );
 };

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { ThemeProvider } from 'styled-components/native';
-import { useColorScheme } from 'react-native';
-import { darkTheme, lightTheme } from './constants/theme';
-import { AuthStack, ProtectedStack } from './navigation';
 import { User } from 'firebase/auth';
-import { FIREBASE_AUTH, onAuthStateChanged } from '../firebase/config';
+import React, { useEffect, useState } from 'react';
+import { useColorScheme } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
+import { ThemeProvider } from 'styled-components/native';
+import { FIREBASE_AUTH, onAuthStateChanged } from '../firebase/config';
+import { themes } from './constants';
+import { AuthStack, ProtectedStack } from './navigation';
 
 function RevenueApp() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -29,7 +29,7 @@ function RevenueApp() {
   }, [loading, auth]);
 
   return (
-    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+    <ThemeProvider theme={isDarkMode ? themes.dark : themes.light}>
       <NavigationContainer>
         {!user ? <AuthStack /> : <ProtectedStack />}
       </NavigationContainer>
