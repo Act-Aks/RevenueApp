@@ -13,10 +13,13 @@ interface ExpenseProps {
 
 const Expenses: React.FC<ExpenseProps> = ({ items }) => {
   return (
-    <Card>
+    <Card cardStyle={{}}>
       {items.map(expense => (
-        <View>
+        <View key={expense.id}>
+          <Text>{expense.id}</Text>
           <Text>{expense.title}</Text>
+          <Text>{expense.amount}</Text>
+          <Text>{expense.date.toDateString()}</Text>
         </View>
       ))}
     </Card>
