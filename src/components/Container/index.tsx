@@ -1,15 +1,22 @@
+import { ScrollViewProps, StyleProp, ViewProps } from 'react-native';
 import { Themes } from '../../constants/types';
-import { StyledContainer } from './style';
+import { StyledContainer, StyledScrollViewContainer } from './style';
 
-interface ContainerProps {
-  children: React.ReactNode;
+interface ContainerProps extends ViewProps {
   backgroundType?: Themes;
 }
-const Container: React.FC<ContainerProps> = ({
-  children,
-  backgroundType,
-}): JSX.Element => (
-  <StyledContainer background={backgroundType}>{children}</StyledContainer>
+const Container: React.FC<ContainerProps> = (props): JSX.Element => (
+  <StyledContainer {...props} background={props.backgroundType}>
+    {props.children}
+  </StyledContainer>
+);
+
+export const ScrollableContainer: React.FC<ScrollViewProps> = (
+  props,
+): JSX.Element => (
+  <StyledScrollViewContainer {...props}>
+    {props.children}
+  </StyledScrollViewContainer>
 );
 
 export default Container;

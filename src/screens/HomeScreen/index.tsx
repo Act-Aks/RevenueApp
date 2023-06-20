@@ -23,10 +23,22 @@ const HomeScreen = () => {
       amount: 450,
       date: new Date(2021, 5, 12),
     },
+    {
+      id: 'e5',
+      title: 'New Desk (Wooden)',
+      amount: 450,
+      date: new Date(2021, 5, 12),
+    },
+    {
+      id: 'e6',
+      title: 'New Desk (Wooden)',
+      amount: 450,
+      date: new Date(2021, 5, 12),
+    },
   ];
   return (
     <Container>
-      <Expenses items={expenses} />
+      <Expenses expenseList={expenses} />
     </Container>
   );
 };

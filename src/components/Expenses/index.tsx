@@ -1,29 +1,42 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import Card from '../Card';
+import { ScrollableContainer } from '../Container';
+import ExpenseItem from './ExpenseItem';
 
-interface ExpenseProps {
-  items: Array<{
-    id: string;
-    title: string;
-    amount: number;
-    date: Date;
-  }>;
+export interface ExpenseData {
+  id: string;
+  title: string;
+  amount: number;
+  date: Date;
 }
 
-const Expenses: React.FC<ExpenseProps> = ({ items }) => {
+interface ExpenseProps {
+  expenseList: Array<ExpenseData>;
+}
+
+const Expenses: React.FC<ExpenseProps> = ({ expenseList }) => {
   return (
-    <Card cardStyle={{}}>
-      {items.map(expense => (
-        <View key={expense.id}>
-          <Text>{expense.id}</Text>
-          <Text>{expense.title}</Text>
-          <Text>{expense.amount}</Text>
-          <Text>{expense.date.toDateString()}</Text>
-        </View>
-      ))}
+    <Card style={styles.card}>
+      <ScrollableContainer
+        contentContainerStyle={styles.scrollView}
+        showsVerticalScrollIndicator={false}>
+        {expenseList.map(expense => (
+          <ExpenseItem key={expense.id} {...expense} />
+        ))}
+      </ScrollableContainer>
     </Card>
   );
 };
 
 export default Expenses;
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: 'rgb(31, 31, 31)',
+  },
+  scrollView: {
+    gap: 12,
+    backgroundColor: 'rgb(31, 31, 31)',
+  },
+});
