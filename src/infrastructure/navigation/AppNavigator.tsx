@@ -1,11 +1,11 @@
-import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen } from '../../screens';
+import React from 'react';
 import { DefaultScreenOptions, RootStackParamList } from '..';
+import { HomeScreen } from '../../screens';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const ProtectedStack = () => {
+const AppNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName={'Home'}
@@ -15,4 +15,4 @@ const ProtectedStack = () => {
   );
 };
 
-export default ProtectedStack;
+export default AppNavigator;

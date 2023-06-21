@@ -1,15 +1,15 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { initializeApp } from 'firebase/app';
 import {
+  createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
 import {
   getReactNativePersistence,
   initializeAuth,
 } from 'firebase/auth/react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyArWhRV_yyShiA6nMIdLgQ5dqCnNkZn384',
@@ -34,11 +34,16 @@ const FIREBASE_AUTH = initializeAuth(FIREBASE_APP, {
 const FIREBASE_DB = getFirestore(FIREBASE_APP);
 // const analytics = getAnalytics(app);
 
+type SignInWithEmailAndPassword = typeof signInWithEmailAndPassword;
+type CreateUserWithEmailAndPassword = typeof createUserWithEmailAndPassword;
+
 export {
   FIREBASE_APP,
   FIREBASE_AUTH,
   FIREBASE_DB,
+  createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
+  type CreateUserWithEmailAndPassword,
+  type SignInWithEmailAndPassword,
 };

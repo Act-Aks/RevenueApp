@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import {
-  FIREBASE_AUTH,
-  createUserWithEmailAndPassword,
-} from '../../../../firebase/config';
-import { Navigation } from '../../../navigation/type';
+import { Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { spacing } from '../../../constants';
+import { NavigationScreens } from '../../../infrastructure';
+import { Navigation } from '../../../infrastructure/type';
+import useAuthenticationContext from '../../../services/auth/authContext';
 import {
   ButtonContainer,
   ButtonLabel,
@@ -23,8 +22,6 @@ import {
   StyledRegisterBox,
   StyledTextInput,
 } from './style';
-import { spacing } from '../../../constants';
-import { NavigationScreens } from '../../../navigation';
 
 interface RegistrationScreenProps {
   navigation: Navigation;
@@ -34,8 +31,7 @@ const RegistrationScreen = ({ navigation }: RegistrationScreenProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const auth = FIREBASE_AUTH;
+  const { onRegister, isLoading } = useAuthenticationContext();
 
   const handleOnChangeEmail = (text: string) => setEmail(text);
   const handleOnChangePassword = (text: string) => setPassword(text);
@@ -50,30 +46,12 @@ const RegistrationScreen = ({ navigation }: RegistrationScreenProps) => {
     Keyboard.dismiss();
   };
 
-  const signUp = async () => {
-    setLoading(true);
-    try {
-      const res = await createUserWithEmailAndPassword(auth, email, password);
-      console.log({ res });
-    } catch (error: any) {
-      console.log({ error });
-      Alert.alert('Sign in failed', error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const onPressCreateAccount = async () => {
-    if (password !== confirmPassword) {
-      Alert.alert("Passwords don't match.");
-      return;
-    }
-    await signUp();
-  };
+  const onPressCreateAccount = () =>
+    onRegister(email, password, confirmPassword);
 
   return (
     <TouchableWithoutFeedback onPress={dismisssKeyboard}>
-      <StyledContainer loading={loading}>
+      <StyledContainer loading={isLoading}>
         <StyledRegisterBox>
           <StyledKeyboardAvoidingView>
             <IconContainer>

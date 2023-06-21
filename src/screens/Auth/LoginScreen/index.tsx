@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
 import {
+  Alert,
+  Keyboard,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
+import { spacing } from '../../../constants';
+import { NavigationScreens } from '../../../infrastructure';
+import { Navigation } from '../../../infrastructure/type';
+import useAuthenticationContext from '../../../services/auth/authContext';
+import {
   AvatarContainer,
   AvatarImage,
   ButtonContainer,
@@ -16,14 +27,6 @@ import {
   StyledLoginBox,
   StyledTextInput,
 } from './style';
-import { Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import { spacing } from '../../../constants';
-import {
-  FIREBASE_AUTH,
-  signInWithEmailAndPassword,
-} from '../../../../firebase/config';
-import { Navigation } from '../../../navigation/type';
-import { NavigationScreens } from '../../../navigation';
 
 interface LoginScreenProps {
   navigation: Navigation;
@@ -32,8 +35,7 @@ interface LoginScreenProps {
 const LoginScreen = ({ navigation }: LoginScreenProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const auth = FIREBASE_AUTH;
+  const { onLogin, isLoading, error } = useAuthenticationContext();
 
   const handleOnChangeUserName = (text: string) => setEmail(text);
   const handleOnChangePassword = (text: string) => setPassword(text);
@@ -46,22 +48,11 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
     Keyboard.dismiss();
   };
 
-  const handleLogin = async () => {
-    setLoading(true);
-    try {
-      const res = await signInWithEmailAndPassword(auth, email, password);
-      console.log({ res });
-    } catch (error: any) {
-      console.log({ error });
-      Alert.alert('Sign in failed', error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handleLogin = () => onLogin(email, password);
 
   return (
     <TouchableWithoutFeedback onPress={dismisssKeyboard}>
-      <StyledContainer loading={loading}>
+      <StyledContainer loading={isLoading}>
         <StyledLoginBox>
           <AvatarContainer>
             <AvatarImage source={require('../../../../assets/camera.png')} />
