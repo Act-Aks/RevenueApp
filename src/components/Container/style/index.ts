@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+
 import { themes } from '../../../constants';
 import { Themes } from '../../../constants/types';
 
@@ -8,7 +9,7 @@ export const StyledContainer = styled.View(
     padding: 16,
     background: props.background
       ? themes[props.background].BACKGROUND_COLOR
-      : themes.light['BACKGROUND_COLOR'],
+      : '#ffffff',
   }),
 );
 
@@ -17,6 +18,6 @@ export const StyledScrollViewContainer = styled.ScrollView(
     flex: 1,
     background: props.background
       ? themes[props.background].BACKGROUND_COLOR
-      : themes.light['BACKGROUND_COLOR'],
+      : '#ffffff',
   }),
 );

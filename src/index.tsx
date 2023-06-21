@@ -1,19 +1,13 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { User } from 'firebase/auth';
-import React, { useEffect, useState } from 'react';
-import { useColorScheme } from 'react-native';
-import SplashScreen from 'react-native-splash-screen';
+import React from 'react';
 import { ThemeProvider } from 'styled-components/native';
-import { FIREBASE_AUTH, onAuthStateChanged } from '../firebase/config';
-import { themes } from './constants';
+
 import { Navigator } from './infrastructure/navigation';
+import { theme } from './infrastructure/theme';
 import { AuthenticationProvider } from './services/auth/authContext';
 
 function RevenueApp() {
-  const isDarkMode = useColorScheme() === 'dark';
-
   return (
-    <ThemeProvider theme={isDarkMode ? themes.dark : themes.light}>
+    <ThemeProvider theme={theme}>
       <AuthenticationProvider>
         <Navigator />
       </AuthenticationProvider>

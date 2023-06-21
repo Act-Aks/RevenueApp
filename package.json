@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "format": "prettier --config .prettierrc.js \"**/*.{cjs,html,js,jsx,ts,tsx,json,md,yml}\"",
     "ios": "react-native run-ios",
-    "lint": "eslint .",
+    "lint": "eslint \"**/*.{ts,tsx}\" --fix",
     "start": "react-native start",
     "test": "jest"
   },
@@ -26,6 +27,7 @@
     "@babel/preset-env": "^7.20.0",
     "@babel/runtime": "^7.20.0",
     "@react-native-community/eslint-config": "^3.2.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@tsconfig/react-native": "^2.0.2",
     "@types/jest": "^29.2.1",
     "@types/react": "^18.0.24",

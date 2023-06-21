@@ -1,0 +1,47 @@
+# Node
+**/.DS_Store
+**/.Rhistory
+**/node_modules
+
+# Builds
+.cdk.staging
+cdk.out
+build
+dist
+
+# IDEs
+.vscode
+**/.idea
+**/coverage
+*.sublime-project
+*.sublime-workspace
+*.iml
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.log
+lerna-debug.log*
+
+# Yarn
+.yarn-integrity
+.yarn/*
+
+# dotenv environment variables file
+.env
+.env.test
+
+# Mobile
+dist/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+android
+assets
+ios
+node_modules
