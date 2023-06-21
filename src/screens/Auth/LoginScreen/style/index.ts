@@ -1,8 +1,7 @@
 import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components/native';
 
-import { fontSize, spacing } from '../../../../constants';
-import { Spacing } from '../../../../constants/types';
+import { Spacing } from '../../../../infrastructure/theme/types';
 
 export const StyledContainer = styled(LinearGradient).attrs({
   colors: ['#072d70', '#629ce3', '#133f75'],
@@ -23,8 +22,8 @@ export const StyledLoginBox = styled(LinearGradient).attrs({
   background-color: #07d1f0;
   opacity: 0.8;
   border-color: #07d1f0;
-  border-radius: ${spacing.x6};
-  padding: ${spacing.x8};
+  border-radius: ${props => props.theme.spacing.x6};
+  padding: ${props => props.theme.spacing.x8};
   border-width: 3px;
   width: 70%;
   height: 280px;
@@ -67,10 +66,10 @@ export const ButtonContainer = styled(LinearGradient).attrs({
   colors: ['#00FFFF', '#17C8FF', '#329BFF', '#4C64FF', '#6536FF', '#8000FF'],
   start: { x: 0.0, y: 1.0 },
   end: { x: 1.0, y: 1.0 },
-})({
+})(props => ({
   height: '20%',
-  borderRadius: `${spacing.x3}`,
-});
+  borderRadius: props.theme.spacing.x3,
+}));
 export const LoginButton = styled.TouchableOpacity`
   flex: 1;
   width: 99%;
@@ -78,26 +77,26 @@ export const LoginButton = styled.TouchableOpacity`
   background-color: #ffffff;
   justify-content: center;
   align-items: center;
-  border-radius: ${spacing.x3};
+  border-radius: ${props => props.theme.spacing.x3};
 `;
 export const ButtonLabel = styled.Text`
   color: #4c64ff;
-  font-size: ${fontSize.x7};
+  font-size: ${props => props.theme.spacing.x7};
   font-weight: 700;
 `;
 export const Separator = styled.View<{ space: Spacing }>(props => ({
-  marginBottom: props.space ?? spacing.x1,
+  marginBottom: props.space ?? props.theme.spacing.x1,
 }));
-export const Footer = styled.View({
-  marginTop: `${spacing.x6}`,
+export const Footer = styled.View(props => ({
+  marginTop: props.theme.spacing.x6,
   alignItems: 'center',
-});
-export const ExtraInfo = styled.Text({
-  fontSize: `${fontSize.x7}`,
+}));
+export const ExtraInfo = styled.Text(props => ({
+  fontSize: props.theme.spacing.x7,
   color: 'white',
-});
-export const Link = styled.Text({
+}));
+export const Link = styled.Text(props => ({
   color: '#2df7ea',
   fontWeight: 'bold',
-  fontSize: `${fontSize.x8}`,
-});
+  fontSize: props.theme.spacing.x8,
+}));

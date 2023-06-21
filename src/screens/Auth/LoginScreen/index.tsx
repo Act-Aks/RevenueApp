@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Keyboard, TouchableWithoutFeedback } from 'react-native';
 
-import { spacing } from '../../../constants';
 import { NavigationScreens } from '../../../infrastructure';
+import { spacing } from '../../../infrastructure/theme';
 import { Navigation } from '../../../infrastructure/type';
 import useAuthenticationContext from '../../../services/auth/authContext';
 import {

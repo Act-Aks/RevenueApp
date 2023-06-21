@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components/native';
 
 import { Navigator } from './infrastructure/navigation';
-import { theme } from './infrastructure/theme';
+import theme from './infrastructure/theme';
 import { AuthenticationProvider } from './services/auth/authContext';
 
 function RevenueApp() {
