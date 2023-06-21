@@ -1,7 +1,7 @@
 import {
   CreateUserWithEmailAndPassword,
-  SignInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  SignInWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from '../../../firebase/config';
 

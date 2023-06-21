@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+
 import { ExpenseData } from '..';
 import Card from '../../Card';
 import ExpenseDate from '../ExpenseDate';

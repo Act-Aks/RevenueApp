@@ -45,3 +45,15 @@ android
 assets
 ios
 node_modules
+__tests__
+
+# Files
+.eslintrc.js
+.gitignore
+.node-version
+.bundle
+.husky
+app.json
+Gemfile
+Gemfile.lock
+yarn.lock

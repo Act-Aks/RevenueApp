@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import SplashScreen from 'react-native-splash-screen';
+
 import useAuthenticationContext from '../../services/auth/authContext';
 import AppNavigator from './AppNavigator';
 import AuthNavigator from './AuthNavigator';

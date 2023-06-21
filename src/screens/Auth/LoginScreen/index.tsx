@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import {
-  Alert,
-  Keyboard,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import { Keyboard, TouchableWithoutFeedback } from 'react-native';
+
 import { spacing } from '../../../constants';
 import { NavigationScreens } from '../../../infrastructure';
 import { Navigation } from '../../../infrastructure/type';
@@ -35,7 +30,7 @@ interface LoginScreenProps {
 const LoginScreen = ({ navigation }: LoginScreenProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { onLogin, isLoading, error } = useAuthenticationContext();
+  const { onLogin, isLoading } = useAuthenticationContext();
 
   const handleOnChangeUserName = (text: string) => setEmail(text);
   const handleOnChangePassword = (text: string) => setPassword(text);

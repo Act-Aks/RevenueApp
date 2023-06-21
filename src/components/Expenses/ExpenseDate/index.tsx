@@ -1,4 +1,6 @@
+import React from 'react';
 import { Text, View } from 'react-native';
+
 import { expenseDateStyle } from './style';
 
 const ExpenseDate = ({ date }: { date: Date }) => {

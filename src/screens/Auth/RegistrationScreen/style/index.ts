@@ -1,7 +1,8 @@
 import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components/native';
-import { Spacing } from '../../../../constants/types';
+
 import { fontSize, spacing } from '../../../../constants';
+import { Spacing } from '../../../../constants/types';
 
 export const StyledContainer = styled(LinearGradient).attrs({
   colors: ['#072d70', '#629ce3', '#133f75'],

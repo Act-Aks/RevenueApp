@@ -1,4 +1,6 @@
+import React from 'react';
 import { ViewProps } from 'react-native';
+
 import { StyledCard } from './style';
 
 interface CardProps extends ViewProps {}

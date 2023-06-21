@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "format": "prettier --config .prettierrc.js \"**/*.{cjs,html,js,jsx,ts,tsx,json,md,yml}\"",
+    "configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\"",
+    "format": "prettier --config .prettierrc.js --ignore-pattern .prettierignore \"**/*.{cjs,html,js,jsx,ts,tsx,json,md,yml}\"",
+    "format:fix": "prettier --config .prettierrc.js --ignore-pattern .prettierignore \"**/*.{cjs,html,js,jsx,ts,tsx,json,md,yml}\" --write",
     "ios": "react-native run-ios",
-    "lint": "eslint \"**/*.{ts,tsx}\" --fix",
+    "lint": "eslint src \"**/*.{ts,tsx}\"",
+    "lint:fix": "eslint src \"**/*.{ts,tsx}\" --fix",
     "start": "react-native start",
     "test": "jest"
   },
@@ -36,7 +39,9 @@
     "@types/styled-components-react-native": "^5.2.1",
     "babel-jest": "^29.2.1",
     "eslint": "^8.19.0",
+    "husky": "^8.0.3",
     "jest": "^29.2.1",
+    "lint-staged": "^13.2.2",
     "metro-react-native-babel-preset": "0.73.9",
     "prettier": "^2.4.1",
     "react-native-safe-area-context": "^4.5.3",
@@ -46,5 +51,16 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,json}": [
+      "yarn lint:fix",
+      "yarn format:fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

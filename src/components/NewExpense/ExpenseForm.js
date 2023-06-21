@@ -1,33 +1,34 @@
-import React from "react";
-import "./ExpenseForm.css";
+import React from 'react';
 
-const ExpenseForm = (props) => {
-  const [title, setTitle] = React.useState("");
-  const [amount, setAmount] = React.useState("");
-  const [date, setDate] = React.useState("");
+import './ExpenseForm.css';
 
-  const handleTitleChange = (event) => {
+const ExpenseForm = props => {
+  const [title, setTitle] = React.useState('');
+  const [amount, setAmount] = React.useState('');
+  const [date, setDate] = React.useState('');
+
+  const handleTitleChange = event => {
     setTitle(event.target.value);
   };
 
-  const handleAmountChange = (event) => {
+  const handleAmountChange = event => {
     setAmount(event.target.value);
   };
 
-  const handleDateChange = (event) => {
+  const handleDateChange = event => {
     setDate(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     props.onSaveExpense({
       title,
       amount,
       date,
     });
-    setTitle("");
-    setAmount("");
-    setDate("");
+    setTitle('');
+    setAmount('');
+    setDate('');
   };
 
   return (
@@ -45,7 +46,7 @@ const ExpenseForm = (props) => {
           <label>Date</label>
           <input
             type="date"
-            min={"2017-01-01"}
+            min={'2017-01-01'}
             value={date}
             onChange={handleDateChange}
           />

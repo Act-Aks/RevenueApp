@@ -1,4 +1,5 @@
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
+
 import { Home, Login, Registration } from './type';
 
 export { default as AppNavigator } from './navigation/AppNavigator';

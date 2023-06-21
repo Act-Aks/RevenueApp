@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Keyboard, TouchableWithoutFeedback } from 'react-native';
+
 import { spacing } from '../../../constants';
 import { NavigationScreens } from '../../../infrastructure';
 import { Navigation } from '../../../infrastructure/type';

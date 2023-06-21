@@ -1,4 +1,5 @@
 import { NavigationProp } from '@react-navigation/native';
+
 // import { User } from 'firebase/auth';
 
 type Navigation = NavigationProp<ReactNavigation.RootParamList>;
