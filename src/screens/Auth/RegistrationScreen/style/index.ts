@@ -17,16 +17,16 @@ export const StyledRegisterBox = styled(LinearGradient).attrs({
   colors: ['#06a0b8', '#f1c40f', '#06a0b8'],
   start: { x: 0, y: 0.5 },
   end: { x: 1, y: 1 },
-})`
-  background-color: #07d1f0;
-  opacity: 0.8;
-  border-color: #07d1f0;
-  border-radius: ${props => props.theme.spacing.x6};
-  padding: ${props => props.theme.spacing.x8};
-  border-width: 3px;
-  width: 70%;
-  height: 380px;
-`;
+})(props => ({
+  backgroundColor: '#07d1f0',
+  opacity: 0.8,
+  borderColor: '#07d1f0',
+  borderRadius: props.theme.spacing.x6,
+  padding: props.theme.spacing.x8,
+  borderWidth: '3px',
+  width: '70%',
+  height: '380px',
+}));
 export const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView({
   flex: 1,
   width: '100%',
@@ -60,11 +60,11 @@ export const LeftInputIcon = styled.Image`
 export const StyledTextInput = styled.TextInput.attrs({
   placeholderTextColor: 'white',
   underlineColorAndroid: 'transparent',
-})`
-  width: 80%;
-  color: white;
-  height: 100%;
-`;
+})({
+  width: '80%',
+  color: 'white',
+  height: '100%',
+});
 export const ButtonContainer = styled(LinearGradient).attrs({
   colors: ['#00FFFF', '#17C8FF', '#329BFF', '#4C64FF', '#6536FF', '#8000FF'],
   start: { x: 0.0, y: 1.0 },
@@ -77,17 +77,19 @@ export const ButtonContainer = styled(LinearGradient).attrs({
 export const RegisterButton = styled.TouchableOpacity(props => ({
   flex: 1,
   width: '99%',
+  margin: '1px',
   alignSelf: 'center',
   justifyContent: 'center',
   backgroundColor: '#ffffff',
   borderRadius: props.theme.spacing.x3,
-  margin: 1,
 }));
-export const ButtonLabel = styled.Text({
+export const ButtonLabel = styled.Text(props => ({
   textAlign: 'center',
   color: '#4C64FF',
   alignSelf: 'center',
-});
+  fontWeight: 700,
+  fontSize: props.theme.spacing.x7,
+}));
 export const Separator = styled.View<{ space: Spacing }>(props => ({
   marginBottom: props.space ?? props.theme.spacing.x1,
 }));

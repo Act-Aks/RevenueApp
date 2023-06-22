@@ -18,35 +18,35 @@ export const StyledLoginBox = styled(LinearGradient).attrs({
   colors: ['#06a0b8', '#f1c40f', '#06a0b8'],
   start: { x: 0, y: 0.5 },
   end: { x: 1, y: 1 },
-})`
-  background-color: #07d1f0;
-  opacity: 0.8;
-  border-color: #07d1f0;
-  border-radius: ${props => props.theme.spacing.x6};
-  padding: ${props => props.theme.spacing.x8};
-  border-width: 3px;
-  width: 70%;
-  height: 280px;
-`;
-export const AvatarContainer = styled.View`
-  justify-content: center;
-  align-items: center;
-  height: 30%;
-`;
+})(props => ({
+  backgroundColor: '#07d1f0',
+  opacity: 0.8,
+  borderColor: '#07d1f0',
+  borderRadius: props.theme.spacing.x6,
+  padding: props.theme.spacing.x8,
+  borderWidth: '3px',
+  width: '70%',
+  height: '280px',
+}));
+export const AvatarContainer = styled.View({
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '30%',
+});
 export const AvatarImage = styled.Image`
   height: 50px;
   width: 50px;
   resize-mode: stretch;
 `;
-export const InputContainer = styled.View`
-  height: 50%;
-`;
+export const InputContainer = styled.View({
+  height: '50%',
+});
 export const Input = styled.View({
   flexDirection: 'row',
   backgroundColor: '#0a3a6b',
   height: '40%',
   width: '100%',
-  borderRadius: 2,
+  borderRadius: '2px',
 });
 export const LeftInputIcon = styled.Image`
   width: 20%;
@@ -57,11 +57,11 @@ export const LeftInputIcon = styled.Image`
 export const StyledTextInput = styled.TextInput.attrs({
   placeholderTextColor: 'white',
   underlineColorAndroid: 'transparent',
-})`
-  width: 80%;
-  color: white;
-  height: 100%;
-`;
+})({
+  width: '80%',
+  color: 'white',
+  height: '100%',
+});
 export const ButtonContainer = styled(LinearGradient).attrs({
   colors: ['#00FFFF', '#17C8FF', '#329BFF', '#4C64FF', '#6536FF', '#8000FF'],
   start: { x: 0.0, y: 1.0 },
@@ -70,20 +70,20 @@ export const ButtonContainer = styled(LinearGradient).attrs({
   height: '20%',
   borderRadius: props.theme.spacing.x3,
 }));
-export const LoginButton = styled.TouchableOpacity`
-  flex: 1;
-  width: 99%;
-  margin: 1px;
-  background-color: #ffffff;
-  justify-content: center;
-  align-items: center;
-  border-radius: ${props => props.theme.spacing.x3};
-`;
-export const ButtonLabel = styled.Text`
-  color: #4c64ff;
-  font-size: ${props => props.theme.spacing.x7};
-  font-weight: 700;
-`;
+export const LoginButton = styled.TouchableOpacity(props => ({
+  flex: 1,
+  width: '99%',
+  margin: '1px',
+  backgroundColor: '#ffffff',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: props.theme.spacing.x3,
+}));
+export const ButtonLabel = styled.Text(props => ({
+  color: '#4c64ff',
+  fontSize: props.theme.spacing.x7,
+  fontWeight: 700,
+}));
 export const Separator = styled.View<{ space: Spacing }>(props => ({
   marginBottom: props.space ?? props.theme.spacing.x1,
 }));
