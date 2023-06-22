@@ -1,9 +1,31 @@
-import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { useCallback, useEffect } from 'react';
 
 import { Container } from '../../components';
 import Expenses from '../../components/Expenses';
+import useAuthenticationContext from '../../services/auth/authContext';
+import { LogoutButtonContainer, LogoutImage } from './style';
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+  const { onLogout } = useAuthenticationContext();
+
+  const headerRight = useCallback(
+    () => (
+      <LogoutButtonContainer onPress={onLogout}>
+        <LogoutImage source={require('../../../assets/log_out.png')} />
+      </LogoutButtonContainer>
+    ),
+    [onLogout],
+  );
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const expenses = [
     {
       id: 'e1',
