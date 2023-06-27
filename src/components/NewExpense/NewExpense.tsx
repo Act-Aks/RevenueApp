@@ -2,13 +2,12 @@ import React from 'react';
 import { View } from 'react-native';
 
 import ExpenseForm from './ExpenseForm';
-import './NewExpense.css';
 
-const NewExpense = ({
-  onAddExpense,
-}: {
+interface NewExpenseProps {
   onAddExpense: (data: any) => void;
-}) => {
+}
+
+const NewExpense: React.FC<NewExpenseProps> = ({ onAddExpense }) => {
   const handleOnSaveExpense = expenseFormData => {
     const expenseData = {
       ...expenseFormData,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
+import { colors } from '../../infrastructure/theme';
 import Card from '../Card';
 import { ScrollableContainer } from '../Container';
 import ExpenseItem from './ExpenseItem';
@@ -34,10 +35,10 @@ export default Expenses;
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: 'rgb(31, 31, 31)',
+    backgroundColor: colors.light.onSecondaryContainer,
   },
   scrollView: {
     gap: 12,
-    backgroundColor: 'rgb(31, 31, 31)',
+    backgroundColor: colors.light.onSecondaryContainer,
   },
 });

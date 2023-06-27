@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 
+import { colors } from '../../../../infrastructure/theme';
+
 export const expenseItemStyle = StyleSheet.create({
   card: {
     height: 110,
@@ -12,7 +14,7 @@ export const expenseItemStyle = StyleSheet.create({
       width: -2,
       height: 4,
     },
-    backgroundColor: '#4b4b4b',
+    backgroundColor: colors.light.background,
   },
 });
 
@@ -22,26 +24,25 @@ export const StyledDataContainer = styled.View(props => ({
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: props.theme.spacing.x6,
-  color: props.theme.colors.bg.primary,
   columnGap: props.theme.spacing.x6,
 }));
 
 export const Title = styled.Text(props => ({
   width: '60%',
-  color: props.theme.colors.bg.primary,
+  color: props.theme.colors.light.onBackground,
   fontSize: props.theme.fontSize.x7,
   fontWeight: '500',
 }));
 
 export const Price = styled.Text(props => ({
   width: '40%',
-  color: props.theme.colors.bg.primary,
+  color: props.theme.colors.light.onBackground,
   padding: props.theme.spacing.x4,
   fontSize: props.theme.spacing.x6,
   borderWidth: 1,
   borderRadius: props.theme.spacing.x6,
-  backgroundColor: '#40005d',
-  borderColor: props.theme.colors.bg.primary,
+  backgroundColor: props.theme.colors.light.primaryContainer,
+  borderColor: props.theme.colors.light.onPrimaryContainer,
   borderStyle: 'solid',
   fontWeight: 'bold',
 }));
