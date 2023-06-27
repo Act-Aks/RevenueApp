@@ -1,5 +1,11 @@
 import styled from 'styled-components/native';
 
+import { Container } from '../../../components';
+
+export const StyledScreen = styled(Container)(props => ({
+  gap: props.theme.spacing.x8,
+}));
+
 export const LogoutButtonContainer = styled.TouchableOpacity.attrs(props => ({
   activeOpacity: props.activeOpacity ?? 0.5,
 }))(props => ({

@@ -8,7 +8,7 @@ interface NewExpenseProps {
 }
 
 const NewExpense: React.FC<NewExpenseProps> = ({ onAddExpense }) => {
-  const handleOnSaveExpense = expenseFormData => {
+  const handleOnSaveExpense = (expenseFormData: any) => {
     const expenseData = {
       ...expenseFormData,
       id: Math.random().toString(),

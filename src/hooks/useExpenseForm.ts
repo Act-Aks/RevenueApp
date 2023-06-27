@@ -1,12 +1,22 @@
+import { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useState } from 'react';
 
 const useExpenseForm = () => {
   const [expenseData, setExpenseData] = useState({
     title: '',
-    amount: 0,
-    date: '',
+    amount: '',
+    date: new Date(Date.now()),
   });
-  const [open, setOpen] = useState<boolean>(false);
+
+  const [isPickerShow, setIsPickerShow] = useState(false);
+
+  const showPicker = () => {
+    setIsPickerShow(true);
+  };
+
+  const hidePicker = () => {
+    setIsPickerShow(false);
+  };
 
   const handleTitleChange = (title: string) => {
     setExpenseData(prevValue => ({
@@ -18,30 +28,28 @@ const useExpenseForm = () => {
   const handleAmountChange = (amount: string) => {
     setExpenseData(prevValue => ({
       ...prevValue,
-      amount: parseInt(amount),
+      amount: amount,
     }));
   };
 
-  const handleDateChange = (date: Date) => {
-    setExpenseData(prevValue => ({
-      ...prevValue,
-      date: date.toISOString(),
-    }));
-  };
-
-  const handleClosePopup = () => {
-    setOpen(false);
+  const handleDateChange = (event: DateTimePickerEvent, date?: Date) => {
+    if (date) {
+      setExpenseData(prevValue => ({
+        ...prevValue,
+        date,
+      }));
+    }
+    hidePicker();
   };
 
   return {
     expenseData,
-    open,
+    isPickerShow,
     handleTitleChange,
     handleAmountChange,
     handleDateChange,
-    handleClosePopup,
     setExpenseData,
-    setOpen,
+    showPicker,
   };
 };
 

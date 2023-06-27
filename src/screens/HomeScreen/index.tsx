@@ -1,10 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect } from 'react';
 
-import { Container } from '../../components';
-import Expenses from '../../components/Expenses';
+import { Expenses, NewExpense } from '../../components';
 import useAuthenticationContext from '../../services/auth/authContext';
-import { LogoutButtonContainer, LogoutImage } from './style';
+import { LogoutButtonContainer, LogoutImage, StyledScreen } from './style';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -60,9 +59,10 @@ const HomeScreen = () => {
     },
   ];
   return (
-    <Container>
+    <StyledScreen>
+      <NewExpense onAddExpense={() => {}} />
       <Expenses expenseList={expenses} />
-    </Container>
+    </StyledScreen>
   );
 };
 
