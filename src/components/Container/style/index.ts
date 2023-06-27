@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const StyledContainer = styled.View(props => ({
   flex: 1,
-  padding: 16,
+  padding: props.theme.spacing.x8,
   background: props.theme.colors.ui.secondary,
 }));
 
