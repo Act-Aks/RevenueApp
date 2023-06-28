@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { StyledDay, StyledExpenseDate, StyledMonth, StyledYear } from './style';
 
 const ExpenseDate = ({ date }: { date: Date }) => {

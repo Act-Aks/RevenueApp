@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { Expenses, NewExpense } from '../../components';
 import useAuthenticationContext from '../../services/auth/authContext';

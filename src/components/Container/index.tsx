@@ -1,4 +1,3 @@
-import React from 'react';
 import { ScrollViewProps, ViewProps } from 'react-native';
 
 import { StyledContainer, StyledScrollViewContainer } from './style';
