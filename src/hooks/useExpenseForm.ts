@@ -43,7 +43,12 @@ const useExpenseForm = () => {
   };
 
   const clearFormData = () =>
-    setExpenseData(prevData => ({ ...prevData, amount: '', title: '' }));
+    setExpenseData(prevData => ({
+      ...prevData,
+      amount: '',
+      title: '',
+      date: new Date(),
+    }));
 
   return {
     expenseData,

@@ -13,7 +13,11 @@ import {
 } from '../../reducers/expenses/reducer';
 import { ExpensesState } from '../../reducers/States';
 import { ExpenseData } from '../../types';
-import { getExpenses, saveExpense } from '../../utils/AsyncStorage';
+import {
+  clearExpenses,
+  getExpenses,
+  saveExpense,
+} from '../../utils/AsyncStorage';
 import useAuthenticationContext from '../auth/authContext';
 
 const initialState: ExpensesState = {
@@ -74,10 +78,15 @@ export const ExpensesProvider = ({ children }: ExpensesProviderProps) => {
     setLoading(false);
   };
 
+  const clearAllExpenses = (id: string) => {
+    clearExpenses(id);
+  };
+
   const contextValue: ExpensesState = {
     ...state,
     addNewExpense,
     setExpenses,
+    clearAllExpenses,
     isLoading,
   };
 

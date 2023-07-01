@@ -25,3 +25,11 @@ export const getExpenses = async (userId: string) => {
     console.error('Could not load the expenses from storage', e);
   }
 };
+
+export const clearExpenses = async (userId: string) => {
+  try {
+    await AsyncStorage.removeItem(`${KEYS.EXPENSE_DATA}-${userId}`);
+  } catch (e) {
+    console.error('Could not clear the expenses from storage', e);
+  }
+};
