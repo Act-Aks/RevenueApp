@@ -7,6 +7,6 @@ export const StyledContainer = styled.View(props => ({
 }));
 
 export const StyledScrollViewContainer = styled.ScrollView(props => ({
-  flex: 1,
+  flexGrow: 1,
   background: props.theme.colors.light.background,
 }));

@@ -1,9 +1,15 @@
+import moment from 'moment';
+
 import { StyledDay, StyledExpenseDate, StyledMonth, StyledYear } from './style';
 
-const ExpenseDate = ({ date }: { date: Date }) => {
-  const month = date.toLocaleString('en-US', { month: 'long' });
-  const day = date.toLocaleString('en-US', { day: '2-digit' });
-  const year = date.getFullYear();
+interface ExpenseDateProps {
+  date: string;
+}
+
+const ExpenseDate = ({ date }: ExpenseDateProps) => {
+  const month = moment(date).format('MMMM');
+  const day = moment(date).format('DD');
+  const year = moment(date).format('YYYY');
 
   return (
     <StyledExpenseDate>

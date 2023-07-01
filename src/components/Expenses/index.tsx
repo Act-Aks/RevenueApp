@@ -1,28 +1,30 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
 import { colors } from '../../infrastructure/theme';
+import useExpensesContext from '../../services/expenses/expensesContext';
 import Card from '../Card';
 import { ScrollableContainer } from '../Container';
 import ExpenseItem from './ExpenseItem';
 
-export interface ExpenseData {
-  id: string;
-  title: string;
-  amount: number;
-  date: Date;
-}
+const Expenses = () => {
+  const {
+    state: { expenses },
+  } = useExpensesContext();
 
-interface ExpenseProps {
-  expenseList: Array<ExpenseData>;
-}
+  if (expenses.length === 0) {
+    return (
+      <Card>
+        <Text style={styles.emptyState}>{'No Expenses Added'}</Text>
+      </Card>
+    );
+  }
 
-const Expenses: React.FC<ExpenseProps> = ({ expenseList }) => {
   return (
     <Card style={styles.card}>
       <ScrollableContainer
         contentContainerStyle={styles.scrollView}
         showsVerticalScrollIndicator={false}>
-        {expenseList.map(expense => (
+        {expenses?.map(expense => (
           <ExpenseItem key={expense.id} {...expense} />
         ))}
       </ScrollableContainer>
@@ -39,5 +41,11 @@ const styles = StyleSheet.create({
   scrollView: {
     gap: 12,
     backgroundColor: colors.light.onSecondaryContainer,
+  },
+  emptyState: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    color: colors.light.onPrimaryContainer,
+    fontWeight: 'bold',
   },
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ExpenseData } from '..';
+import { ExpenseData } from '../../../types';
 import Card from '../../Card';
 import ExpenseDate from '../ExpenseDate';
 import { expenseItemStyle, Price, StyledDataContainer, Title } from './style';

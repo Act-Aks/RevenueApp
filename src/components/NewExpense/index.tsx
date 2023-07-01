@@ -1,13 +1,14 @@
 import { View } from 'react-native';
 
-import ExpenseForm from './ExpenseForm';
+import { ExpenseData } from '../../types';
+import ExpenseForm, { ExpenseFormData } from './ExpenseForm';
 
 interface NewExpenseProps {
-  onAddExpense: (data: any) => void;
+  onAddExpense: (data: ExpenseData) => void;
 }
 
 const NewExpense: React.FC<NewExpenseProps> = ({ onAddExpense }) => {
-  const handleOnSaveExpense = (expenseFormData: any) => {
+  const handleOnSaveExpense = (expenseFormData: ExpenseFormData) => {
     const expenseData = {
       ...expenseFormData,
       id: Math.random().toString(),

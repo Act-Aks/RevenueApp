@@ -3,6 +3,7 @@ import moment from 'moment';
 import { useRef } from 'react';
 
 import useExpenseForm from '../../../hooks/useExpenseForm';
+import { ExpenseData } from '../../../types';
 import Icon from '../../Icon';
 import {
   ButtonLabel,
@@ -14,8 +15,10 @@ import {
   StyledInputContainer,
 } from './style';
 
+export type ExpenseFormData = Pick<ExpenseData, 'amount' | 'date' | 'title'>;
+
 interface ExpenseFormProps {
-  onSaveExpense: (data: any) => void;
+  onSaveExpense: (data: ExpenseFormData) => void;
 }
 
 const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSaveExpense }) => {
@@ -27,18 +30,16 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSaveExpense }) => {
     handleAmountChange,
     isPickerShow,
     showPicker,
+    clearFormData,
   } = useExpenseForm();
 
   const handleSubmit = () => {
     onSaveExpense({
       title,
-      amount,
-      date,
+      amount: parseFloat(amount),
+      date: moment(date).format('DD/MM/YYYY'),
     });
-    console.log('event');
-    // setTitle('');
-    // setAmount('');
-    // setDate('');
+    clearFormData();
   };
 
   return (

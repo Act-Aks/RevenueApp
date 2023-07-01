@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const StyledCard = styled.View(props => ({
-  flexGrow: 1,
+  flexShrink: 1,
   border: 1,
   borderRadius: props.theme.spacing.x6,
   padding: props.theme.spacing.x8,

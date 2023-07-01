@@ -42,6 +42,9 @@ const useExpenseForm = () => {
     hidePicker();
   };
 
+  const clearFormData = () =>
+    setExpenseData(prevData => ({ ...prevData, amount: '', title: '' }));
+
   return {
     expenseData,
     isPickerShow,
@@ -50,6 +53,7 @@ const useExpenseForm = () => {
     handleDateChange,
     setExpenseData,
     showPicker,
+    clearFormData,
   };
 };
 
