@@ -105,6 +105,10 @@ const TabNavigator = () => {
           tabBarStyle: styles.tabBarStyle,
         }}>
         {TabArray.map((item, index) => {
+          const tabBarButton = (props: BottomTabBarButtonProps) => (
+            <TabButton {...props} item={item} />
+          );
+
           return (
             <Tabs.Screen
               key={index}
@@ -113,7 +117,7 @@ const TabNavigator = () => {
               options={{
                 headerTitle: item.label,
                 tabBarShowLabel: false,
-                tabBarButton: props => <TabButton {...props} item={item} />,
+                tabBarButton,
               }}
             />
           );

@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 
-import { Container } from '../../../components';
+import { AnimatedView } from '../../../components/Container';
 
-export const StyledScreen = styled(Container)(props => ({
+export const StyledScreen = styled(AnimatedView)(props => ({
   gap: props.theme.spacing.x8,
 }));
 
