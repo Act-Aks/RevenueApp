@@ -5,6 +5,8 @@ import { NavigationProp } from '@react-navigation/native';
 type Navigation = NavigationProp<ReactNavigation.RootParamList>;
 type Login = undefined;
 type Registration = undefined;
-type Home = undefined;
+type DashBoard = undefined;
+type Account = undefined;
+type Tabs = 'DashBoardTab' | 'AccountTab';
 
-export type { Home, Login, Registration, Navigation };
+export type { Account, DashBoard, Login, Navigation, Registration, Tabs };

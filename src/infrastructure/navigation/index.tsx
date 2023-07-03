@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import SplashScreen from 'react-native-splash-screen';
 
 import useAuthenticationContext from '../../services/auth/authContext';
-import AppNavigator from './AppNavigator';
 import AuthNavigator from './AuthNavigator';
+import TabNavigator from './TabNavigator';
 
 export const Navigator = () => {
   const { isAuthenticated, isLoading } = useAuthenticationContext();
@@ -17,7 +17,7 @@ export const Navigator = () => {
 
   return (
     <NavigationContainer>
-      {isAuthenticated ? <AppNavigator /> : <AuthNavigator />}
+      {isAuthenticated ? <TabNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };

@@ -6,7 +6,7 @@ import useAuthenticationContext from '../../services/auth/authContext';
 import useExpensesContext from '../../services/expenses/expensesContext';
 import { LogoutButtonContainer, LogoutImage, StyledScreen } from './style';
 
-const HomeScreen = () => {
+const DashBoard = () => {
   const navigation = useNavigation();
   const { onLogout } = useAuthenticationContext();
   const {
@@ -37,4 +37,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default DashBoard;
